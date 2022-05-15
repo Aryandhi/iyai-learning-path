@@ -1,15 +1,16 @@
 package iyai.learning.path.test;
 
+import iyai.learning.path.test.generator.SimpleDisplayNameGenerator;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-@DisplayName("Test Calculator class")
+@DisplayNameGeneration(value = SimpleDisplayNameGenerator.class)
+//@DisplayName("Test Calculator class")
 public class CalculatorTest {
     private Calculator calculator = new Calculator();
 
-    // displayName akan tampil diterminal testing
-    @DisplayName("untuk test skenario sukses method add(Integer, Integer)")
+    //@DisplayName("untuk test skenario sukses method add(Integer, Integer)")
     @Test
     public void testAddSuccess(){
         var result = calculator.add(10, 10);
