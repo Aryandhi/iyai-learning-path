@@ -44,4 +44,29 @@ public class PersonServiceTest {
         Assertions.assertEquals("eko", person.getId());
         Assertions.assertEquals("Eko", person.getName());
     }
+
+    @Test
+    void tesRegisterSuccess() {
+        // bila user register dg name Eko
+        var person = personService.register("Eko");
+
+        // dari sisi testing
+        Assertions.assertNotNull(person);
+
+        //saat get input user, testing apakah get nama "Eko"
+        Assertions.assertEquals("Eko", person.getName());
+
+        Assertions.assertNotNull(person.getId());
+
+        // verifikasi mockito
+        Mockito.verify(personRepository, Mockito.times(1))
+                .insert(new Person(person.getId(), "Eko"));
+
+        /* Pentingnya verify
+        * case nya terjadi bila personRepository.insert() pada personService.register() dihapus
+        * ini berbahaya, karena saat user berhasil register, data tidak masuk ke database
+        * sebab itu penting untuk implementasi verify mockito, agar personRepository.insert()
+        * dipastikan sudah terpanggil, dan validasi jumlah kali pemanggilannya (jgn sampai double)
+        **/
+    }
 }
