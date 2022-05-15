@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import org.opentest4j.TestAbortedException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 @DisplayNameGeneration(value = SimpleDisplayNameGenerator.class)
 public class CalculatorTest {
@@ -60,6 +61,17 @@ public class CalculatorTest {
         * bila @Disabled, kita otomatis skiped unit test tsb
         * tetapi pada TestAborted, akan dilakukan pengecekan terlebih dulu,
         * ketika kondisi false, maka unit test dibatalkan
+        */
+    }
+
+    @Test
+    void testAssume(){
+        assumeTrue("DEV".equals(System.getenv("PROFILE")));
+
+        /*
+        * cara melalukan TestAborted dengan cara yg lebih mudah
+        * dg import Assumptions
+        * lebih direkomendasikan menggunakan Assumptions daripada TestAborted secara manual
         */
     }
 
