@@ -1,6 +1,7 @@
 package iyai.learning.path.test;
 
 import iyai.learning.path.test.generator.SimpleDisplayNameGenerator;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ public class CalculatorTest {
     }
 
     @Test
+    @Disabled
     public void testDivideError(){
         assertThrows(IllegalArgumentException.class, () -> {
             calculator.divide(100, 0);
