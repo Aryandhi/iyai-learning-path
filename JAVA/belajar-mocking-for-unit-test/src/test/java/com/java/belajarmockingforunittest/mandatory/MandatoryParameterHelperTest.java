@@ -7,27 +7,32 @@ package com.java.belajarmockingforunittest.mandatory;
 * */
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.junit.Rule;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-//import org.junit.Rule;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class MandatoryParameterHelperTest {
-//    @Rule
-//    public MockitoRule mockitoRule = MockitoJUnit.rule();
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
     
     @Mock
     public HttpServletRequest servletRequest;
 
     @Test
     void testValid() {
+
+        when(servletRequest.getParameter("username")).thenReturn("Eko");
+        when(servletRequest.getParameter("requestId")).thenReturn("Id");
+
+        // object mock
         MandatoryParameter parameter = MandatoryParameterHelper.getMandatoryParameter(servletRequest);
 
-        // dari sisi tester, saat belum dibuat behavior
-        // saat run test, pasti akan fail (gagal)
+        // dari sisi tester
         assertEquals("Eko", parameter.getUsername());
         assertEquals("Id", parameter.getRequestId());
     }
