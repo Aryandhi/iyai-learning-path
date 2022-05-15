@@ -2,6 +2,7 @@ package iyai.learning.path.test;
 
 import iyai.learning.path.test.generator.SimpleDisplayNameGenerator;
 import org.junit.jupiter.api.*;
+import org.opentest4j.TestAbortedException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,5 +48,19 @@ public class CalculatorTest {
         });
     }
 
+    @Test
+    void testAborted(){
+        var profile = System.getenv("PROFILE");
+        if(!"DEV".equals(profile)){
+            throw new TestAbortedException("Test dibatalkan karena bukan DEV");
+        }
+
+        /*
+        * TestAborted hampir mirip dg @Disabled
+        * bila @Disabled, kita otomatis skiped unit test tsb
+        * tetapi pada TestAborted, akan dilakukan pengecekan terlebih dulu,
+        * ketika kondisi false, maka unit test dibatalkan
+        */
+    }
 
 }
